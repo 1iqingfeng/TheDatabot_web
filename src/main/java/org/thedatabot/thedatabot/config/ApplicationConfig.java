@@ -1,22 +1,33 @@
 package org.thedatabot.thedatabot.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thedatabot.thedatabot.annotation.MessageTypeHandler;
 import org.thedatabot.thedatabot.common.Enum.Bot.MessageType;
 import org.thedatabot.thedatabot.registry.MessageHandlerRegistry;
+import org.thedatabot.thedatabot.scanner.EventHandlerScanner;
 
 import java.util.Set;
 
 @Configuration
+@Slf4j
 public class ApplicationConfig {
+
+    @Autowired
+    private EventHandlerScanner eventHandlerScanner;
 
     @Bean
     public MessageHandlerRegistry messageHandlerRegistry() {
         MessageHandlerRegistry registry = new MessageHandlerRegistry();
+        // 扫描并注册消息处理器
+        registerMessageHandlers(registry);
+        return registry;
+    }
 
-        // 扫描指定包中的所有带有 @MessageTypeHandler 的类
+    private void registerMessageHandlers(MessageHandlerRegistry registry) {
         Reflections reflections = new Reflections("org.thedatabot.thedatabot.handler.impl");
         Set<Class<?>> handlerClasses = reflections.getTypesAnnotatedWith(MessageTypeHandler.class);
 
@@ -35,7 +46,6 @@ public class ApplicationConfig {
                 e.printStackTrace();
             }
         }
-
-        return registry;
     }
+
 }

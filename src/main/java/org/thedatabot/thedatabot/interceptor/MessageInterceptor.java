@@ -35,7 +35,6 @@ public class MessageInterceptor {
     }
     public void intercept(String message) throws Exception {
         for (Map.Entry<String, EventHandler> entry : eventHandlerMap.entrySet()) {
-            log.debug(message);
             String metaEventType = entry.getKey();
             EventHandler handler = entry.getValue();
             if (message.contains(metaEventType)) {
