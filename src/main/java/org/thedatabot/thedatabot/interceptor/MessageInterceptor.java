@@ -5,42 +5,40 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.thedatabot.thedatabot.event.EventHandler;
-import org.thedatabot.thedatabot.event.Impl.HeartbeatEventHandler;
-import org.thedatabot.thedatabot.event.Impl.LifecycleEventHandler;
-import org.thedatabot.thedatabot.event.Impl.MessageEventHandler;
+import org.thedatabot.thedatabot.registry.MessageHandlerRegistry;
+import org.thedatabot.thedatabot.scanner.EventHandlerScanner;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @Slf4j
 public class MessageInterceptor {
-    private final List<EventHandler> eventHandlers = new ArrayList<>();
-    @Autowired
-    private LifecycleEventHandler lifecycleEventHandler;
+    private Map<String, EventHandler> eventHandlerMap = new HashMap<>();
+
 
     @Autowired
-    private HeartbeatEventHandler heartbeatEventHandler;
-
-    @Autowired
-    private MessageEventHandler messageEventHandler;
+    private EventHandlerScanner eventHandlerScanner;
+    private MessageHandlerRegistry messageHandlerRegistry;
     @PostConstruct
     public void init() {
-        eventHandlers.add(lifecycleEventHandler);
-        eventHandlers.add(heartbeatEventHandler);
-        eventHandlers.add(messageEventHandler);
+        try {
+            // 扫描指定包并注册事件处理器
+            eventHandlerScanner.scanAndRegisterHandlers("org.thedatabot.thedatabot.event.Impl",messageHandlerRegistry);
+            this.eventHandlerMap = eventHandlerScanner.getEventHandlerMap();
+            if (this.eventHandlerMap == null || this.eventHandlerMap.isEmpty()) {
+                log.warn("没有找到任何事件处理器");
+            }
+        } catch (Exception e) {
+            log.error("初始化 MessageInterceptor 时发生错误: ", e);
+            throw e; // 重新抛出异常，确保 Spring 能捕获
+        }
     }
-
     public void intercept(String message) throws Exception {
-        for (EventHandler handler : eventHandlers) {
-            // 判断消息类型并调用相应的处理器
-            if (message.contains("\"meta_event_type\":\"lifecycle\"") && handler instanceof LifecycleEventHandler) {
-                handler.handle(message);
-                return;
-            } else if (message.contains("\"meta_event_type\":\"heartbeat\"") && handler instanceof HeartbeatEventHandler) {
-                handler.handle(message);
-                return;
-            } else if (message.contains("\"post_type\":\"message\"") && handler instanceof MessageEventHandler) {
+        for (Map.Entry<String, EventHandler> entry : eventHandlerMap.entrySet()) {
+            String metaEventType = entry.getKey();
+            EventHandler handler = entry.getValue();
+            if (message.contains(metaEventType)) {
                 handler.handle(message);
                 return;
             }
