@@ -4,14 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.thedatabot.thedatabot.annotation.EventHandlerType;
 import org.thedatabot.thedatabot.common.Enum.Bot.MessageType;
 import org.thedatabot.thedatabot.entity.dto.MessageEvent;
+import org.thedatabot.thedatabot.event.EventHandler;
 import org.thedatabot.thedatabot.handler.MessageHandler;
 import org.thedatabot.thedatabot.registry.MessageHandlerRegistry;
 
 @Slf4j
 @Component
-public class MessageEventHandler {
+@EventHandlerType("\"post_type\":\"message\"")
+public class MessageEventHandler implements EventHandler {
 
     @Autowired
     private ObjectMapper objectMapper;
