@@ -3,8 +3,12 @@ package org.thedatabot.thedatabot.webscoket;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.thedatabot.thedatabot.interceptor.MessageInterceptor;
 
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,7 +16,19 @@ import java.util.concurrent.ConcurrentHashMap;
 @ServerEndpoint(value = "/websocket/{userName}", encoders = {ServerEncoder.class})
 @Component
 @Slf4j
+@NoArgsConstructor
 public class WebSocketService {
+    private static ApplicationContext applicationContext;
+
+    @Autowired
+    public WebSocketService(ApplicationContext applicationContext) {
+        WebSocketService.applicationContext = applicationContext;
+    }
+
+    private MessageInterceptor messageInterceptor() {
+        return applicationContext.getBean(MessageInterceptor.class);
+    }
+
 
     // 存储客户端连接的 WebSocket 会话，key 为用户名
     private static final ConcurrentHashMap<String, WebSocketClient> webSocketMap = new ConcurrentHashMap<>();
@@ -47,6 +63,12 @@ public class WebSocketService {
     @OnMessage
     public void onMessage(Session session, String message) {
         log.info("收到用户 [{}] 的消息：{}", this.userName, message);
+        try {
+            messageInterceptor().intercept(message);
+        } catch (Exception e) {
+            log.error("消息处理失败", e);
+            throw new RuntimeException(e);
+        }
     }
     /**
      * 客户端与服务端连接关闭时调用
