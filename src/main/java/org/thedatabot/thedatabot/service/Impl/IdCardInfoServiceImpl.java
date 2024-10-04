@@ -23,6 +23,8 @@ public class IdCardInfoServiceImpl extends ServiceImpl<IdCardInfoMapper, IdCardI
     @Override
     public List<IdCardInfo> findIdPrefix6AndNameBYShanghai10(String rawMessage) {
         String[] split = rawMessage.split(":");
+        if(split.length != 2){return null;}
+
         LambdaQueryWrapper<IdCardInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.likeRight(IdCardInfo::getIdCardNumber,split[0]).eq(IdCardInfo::getName,split[1]);
         return idCardInfoMapper.selectList(lambdaQueryWrapper);

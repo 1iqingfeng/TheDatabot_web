@@ -1,11 +1,14 @@
 package org.thedatabot.thedatabot.entity.httpinterface;
 
+import org.thedatabot.thedatabot.entity.request.SendPrivateMessageRequest;
+import org.thedatabot.thedatabot.entity.response.NapCatQQBaseResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
+
 public interface NapCatQQ {
     @POST("send_private_msg")
-    Call<NapCatQQ> sendPrivateMessage(@Body SendPrivateMessageRequest request);
+    Call<NapCatQQBaseResponse> sendPrivateMessage(@Body SendPrivateMessageRequest request);
 
     // @POST("send_group_msg")
     // Call<ApiResponse> sendGroupMessage(@Body SendGroupMessageRequest request);
