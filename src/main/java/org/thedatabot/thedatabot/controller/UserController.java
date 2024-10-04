@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.thedatabot.thedatabot.common.Result.Result;
 import org.thedatabot.thedatabot.entity.pojo.User;
 import org.thedatabot.thedatabot.mapper.UserMapper;
+import org.thedatabot.thedatabot.service.IdCardInfoService;
 import org.thedatabot.thedatabot.service.UserService;
 
 @RestController
@@ -19,6 +20,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private IdCardInfoService idCardInfoService;
     @GetMapping
     @DS("master")
     public Result<String> setUser() {

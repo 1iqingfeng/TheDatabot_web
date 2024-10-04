@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.thedatabot.thedatabot.mapper.IdCardInfoMapper">
 
-    <resultMap id="BaseResultMap" type="org.thedatabot.thedatabot.domain.IdCardInfo">
+    <resultMap id="BaseResultMap" type="org.thedatabot.thedatabot.entity.pojo.IdCardInfo">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="idCardNumber" column="id_card_number" jdbcType="VARCHAR"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
-
     <sql id="Base_Column_List">
         id,id_card_number,name
     </sql>
+
 </mapper>

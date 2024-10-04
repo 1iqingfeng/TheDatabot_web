@@ -16,6 +16,11 @@ spring:
           username: root
           password: 111111
           driver-class-name: com.mysql.cj.jdbc.Driver
+        shanghai10:
+          url: jdbc:mysql://49.235.106.102:3306/shten  # 仅一个斜杠
+          username: shten
+          password: WTMLNreKidCfGpFH
+          driver-class-name: com.mysql.cj.jdbc.Driver
   mybatis-plus:
     mapper-locations: classpath:/mapper/*.xml
     type-aliases-package: org.thedatabot.thedatabot.entity
