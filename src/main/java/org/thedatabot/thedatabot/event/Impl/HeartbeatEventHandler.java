@@ -18,6 +18,5 @@ public class HeartbeatEventHandler implements EventHandler {
     @Override
     public void handle(String message) throws Exception {
         HeartbeatEvent heartbeatEvent = objectMapper.readValue(message, HeartbeatEvent.class);
-        // 处理心跳事件
     }
 }
