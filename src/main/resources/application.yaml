@@ -14,9 +14,9 @@ spring:
       strict: false
       datasource:
         master:
-          url: jdbc:mysql://localhost:3306/sfsfsf  # 仅一个斜杠
-          username: root
-          password: 111111
+          url: jdbc:mysql://49.235.106.102:3306/EntertainDB  # 仅一个斜杠
+          username: EntertainDB
+          password: D5iPxN2GCDsdnt4z
           driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis-plus:
     mapper-locations: classpath:/mapper/*.xml
