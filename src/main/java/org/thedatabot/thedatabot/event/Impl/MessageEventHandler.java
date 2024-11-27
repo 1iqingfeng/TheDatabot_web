@@ -24,8 +24,6 @@ public class MessageEventHandler implements EventHandler {
     public void handle(String message) throws Exception {
         // 解析消息事件
         MessageEvent messageEvent = objectMapper.readValue(message, MessageEvent.class);
-        log.debug("Received message event: {}", messageEvent);
-
         // 获取消息类型
         MessageType messageType = MessageType.fromString(messageEvent.getMessageType());
 

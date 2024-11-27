@@ -17,7 +17,6 @@ public class GroupMessageHandler implements MessageHandler {
         if (!enabled) {
             return; // 如果处理器被禁用，则不处理消息
         }
-        log.info("消息处理后的内容:{}",messageEvent);
     }
 
     @Override
