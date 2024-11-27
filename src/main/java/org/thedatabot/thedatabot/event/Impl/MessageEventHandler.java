@@ -32,7 +32,7 @@ public class MessageEventHandler implements EventHandler {
         // 从注册表中获取对应的处理器
         MessageHandler handler = (MessageHandler) messageHandlerRegistry.getHandler(messageType);
         if (handler != null) {
-            log.debug("Found handler for message type: {}", messageType);
+            // log.debug("Found handler for message type: {}", messageType);
             handler.handle(messageEvent); // 处理消息事件
         } else {
             log.warn("No handler found for message type: {}", messageType);

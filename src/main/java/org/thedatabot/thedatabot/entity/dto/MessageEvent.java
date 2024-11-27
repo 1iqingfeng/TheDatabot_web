@@ -1,9 +1,9 @@
 package org.thedatabot.thedatabot.entity.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
-import org.thedatabot.thedatabot.config.SingleMessageDeserializer;
+
+import java.util.List;
 
 @Data
 public class MessageEvent {
@@ -41,10 +41,9 @@ public class MessageEvent {
     @JsonProperty("sub_type")
     private String subType;
 
-    // 将 message 字段解析为单个对象（数组中的第一个元素）
+    // 修改为List类型以接收多个消息对象
     @JsonProperty("message")
-    @JsonDeserialize(using = SingleMessageDeserializer.class)
-    private Message message;
+    private List<Message> messages;
 
     @JsonProperty("message_format")
     private String messageFormat;
@@ -55,6 +54,9 @@ public class MessageEvent {
     @JsonProperty("group_id")
     private long groupId;
 
+    /**
+     * 嵌套类：Sender
+     */
     @Data
     public static class Sender {
         @JsonProperty("user_id")
@@ -70,6 +72,9 @@ public class MessageEvent {
         private String role;
     }
 
+    /**
+     * 嵌套类：Message
+     */
     @Data
     public static class Message {
         @JsonProperty("type")
@@ -86,6 +91,24 @@ public class MessageEvent {
         public static class Data {
             @JsonProperty("text")
             private String text;
+
+            @JsonProperty("id")
+            private String id;
+
+            @JsonProperty("qq")
+            private String qq;
+
+            @JsonProperty("file")
+            private String file;
+
+            @JsonProperty("url")
+            private String url;
+
+            @JsonProperty("file_size")
+            private String fileSize;
+
+            @JsonProperty("file_unique")
+            private String fileUnique;
         }
     }
 }

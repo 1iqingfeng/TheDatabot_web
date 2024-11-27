@@ -62,7 +62,7 @@ public class WebSocketService {
      */
     @OnMessage
     public void onMessage(Session session, String message) {
-        log.info("收到用户 [{}] 的消息：{}", this.userName, message);
+        // log.info("收到用户 [{}] 的消息：{}", this.userName, message);
         try {
             messageInterceptor().intercept(message);
         } catch (Exception e) {

@@ -28,8 +28,6 @@ public class PrivateMessageHandler implements MessageHandler {
 
     @Override
     public void handle(MessageEvent messageEvent){
-        String text = messageEvent.getMessage().getData().getText();// 处理群聊消息的逻辑
-        log.debug("处理私聊消息: " + text);
     }
 
     @Override

@@ -17,8 +17,7 @@ public class GroupMessageHandler implements MessageHandler {
         if (!enabled) {
             return; // 如果处理器被禁用，则不处理消息
         }
-        String text = messageEvent.getMessage().getData().getText();// 处理群聊消息的逻辑
-        log.debug("处理群聊消息: " + text);
+        log.info("消息处理后的内容:{}",messageEvent);
     }
 
     @Override
