@@ -1,9 +1,9 @@
 package org.thedatabot.thedatabot.entity.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
-
-import java.util.List;
+import org.thedatabot.thedatabot.config.SingleMessageDeserializer;
 
 @Data
 public class MessageEvent {
@@ -41,8 +41,10 @@ public class MessageEvent {
     @JsonProperty("sub_type")
     private String subType;
 
+    // 将 message 字段解析为单个对象（数组中的第一个元素）
     @JsonProperty("message")
-    private List<Message> message;
+    @JsonDeserialize(using = SingleMessageDeserializer.class)
+    private Message message;
 
     @JsonProperty("message_format")
     private String messageFormat;
@@ -53,7 +55,7 @@ public class MessageEvent {
     @JsonProperty("group_id")
     private long groupId;
 
-    @Data // 这个注解会自动生成 getter、setter 等方法
+    @Data
     public static class Sender {
         @JsonProperty("user_id")
         private long userId;
@@ -68,7 +70,7 @@ public class MessageEvent {
         private String role;
     }
 
-    @Data // 这个注解会自动生成 getter、setter 等方法
+    @Data
     public static class Message {
         @JsonProperty("type")
         private String type;
@@ -76,16 +78,14 @@ public class MessageEvent {
         @JsonProperty("data")
         private Data data;
 
-        @lombok.Data // 这个注解会自动生成 getter、setter 等方法
+        public String getText() {
+            return data != null ? data.getText() : null;
+        }
+
+        @lombok.Data
         public static class Data {
             @JsonProperty("text")
             private String text;
-
-            @JsonProperty("id")
-            private String id;
-
-            @JsonProperty("content")
-            private List<String> content;
         }
     }
 }
