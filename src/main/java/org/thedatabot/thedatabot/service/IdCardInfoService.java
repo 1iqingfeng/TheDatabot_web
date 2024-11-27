@@ -1,10 +1,7 @@
 package org.thedatabot.thedatabot.service;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.thedatabot.thedatabot.entity.pojo.IdCardInfo;
-
-import java.util.List;
 
 /**
 * @author admin
@@ -13,6 +10,5 @@ import java.util.List;
 */
 public interface IdCardInfoService extends IService<IdCardInfo> {
 
-    @DS("shanghai10")
-    List<IdCardInfo> findIdPrefix6AndNameBYShanghai10(String rawMessage);
+    String findIdPrefix6AndNameBYShanghai10(String rawMessage);
 }

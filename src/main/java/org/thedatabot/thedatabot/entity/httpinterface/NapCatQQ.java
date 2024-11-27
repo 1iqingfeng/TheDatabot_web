@@ -11,8 +11,7 @@ public interface NapCatQQ {
     Call<NapCatQQBaseResponse> sendPrivateMessage(@Body SendPrivateMessageRequest request);
 
     // @POST("send_group_msg")
-    // Call<ApiResponse> sendGroupMessage(@Body SendGroupMessageRequest request);
-    //
+    // Call<NapCatQQBaseResponse> sendGroupMessage(@Body SendGroupMessageRequest request);
     // @POST("delete_msg")
     // Call<ApiResponse> deleteMessage(@Body DeleteMessageRequest request);
     //

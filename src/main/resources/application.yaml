@@ -3,7 +3,12 @@ spring:
     name: TheDataBot
   datasource:
     hikari:
-      connection-test-query: SELECT 1 FROM DUAL
+      maximum-pool-size: 10         # 最大连接数
+      connection-timeout: 30000     # 连接超时，30秒
+      idle-timeout: 600000          # 空闲连接在600秒（10分钟）后回收
+      max-lifetime: 1800000         # 连接最大存活时间，1800秒（30分钟）
+      validation-timeout: 5000      # 验证连接的超时时间，5秒
+      connection-test-query: SELECT 1  # 用于验证连接的测试查询
     dynamic:
       primary: master
       strict: false
@@ -13,17 +18,7 @@ spring:
           username: root
           password: 111111
           driver-class-name: com.mysql.cj.jdbc.Driver
-        dfdfdf:
-          url: jdbc:mysql://localhost:3306/dfdfdf  # 仅一个斜杠
-          username: root
-          password: 111111
-          driver-class-name: com.mysql.cj.jdbc.Driver
-        shanghai10:
-          url: jdbc:mysql://49.235.106.102:3306/shten  # 仅一个斜杠
-          username: shten
-          password: WTMLNreKidCfGpFH
-          driver-class-name: com.mysql.cj.jdbc.Driver
-  mybatis-plus:
+mybatis-plus:
     mapper-locations: classpath:/mapper/*.xml
     type-aliases-package: org.thedatabot.thedatabot.entity
     global-config:

@@ -12,5 +12,8 @@
     <sql id="Base_Column_List">
         id,id_card_number,name
     </sql>
+    <select id="sele1">
+        select 1 from dual
+    </select>
 
 </mapper>

@@ -10,6 +10,7 @@ import org.thedatabot.thedatabot.entity.pojo.IdCardInfo;
 * @Entity org.thedatabot.thedatabot.entity.pojo.IdCardInfo
 */
 public interface IdCardInfoMapper extends BaseMapper<IdCardInfo> {
+    void sele1();
 }
 
 

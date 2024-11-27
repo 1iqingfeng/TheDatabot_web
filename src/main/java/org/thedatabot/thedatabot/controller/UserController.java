@@ -11,7 +11,7 @@ import org.thedatabot.thedatabot.mapper.UserMapper;
 import org.thedatabot.thedatabot.service.IdCardInfoService;
 import org.thedatabot.thedatabot.service.UserService;
 
-@RestController
+@RestController("MyUserController")
 @RequestMapping("/users")
 
 public class UserController {
@@ -34,7 +34,6 @@ public class UserController {
         return Result.success("success");
     }
     @GetMapping("/test2")
-    @DS("dfdfdf")
     public Result<String> setUser2() {
         User test2 = User.builder().name("test2").build();
         userMapper.insert(test2);
