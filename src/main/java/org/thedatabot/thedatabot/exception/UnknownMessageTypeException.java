@@ -1,6 +1,6 @@
 package org.thedatabot.thedatabot.exception;
 
-import org.thedatabot.thedatabot.common.Enum.Bot.BotErrorType;
+import org.thedatabot.thedatabot.common.enums.Bot.BotErrorType;
 
 public class UnknownMessageTypeException extends RuntimeException {
     public UnknownMessageTypeException(BotErrorType errorType) {

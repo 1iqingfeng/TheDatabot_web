@@ -1,10 +1,11 @@
-package org.thedatabot.thedatabot.common.Exception;
+package org.thedatabot.thedatabot.common.exception;
+
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.servlet.resource.NoResourceFoundException;
-import org.thedatabot.thedatabot.common.Enum.ResultCode;
-import org.thedatabot.thedatabot.common.Result.Result;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
+import org.thedatabot.thedatabot.common.enums.ResultCode;
+import org.thedatabot.thedatabot.common.result.Result;
 
 @RestControllerAdvice
 @Slf4j

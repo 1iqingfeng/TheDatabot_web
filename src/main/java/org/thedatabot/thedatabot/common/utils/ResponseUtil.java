@@ -1,5 +1,6 @@
-package org.thedatabot.thedatabot.common.Utils;
-import org.thedatabot.thedatabot.common.Result.Result;
+package org.thedatabot.thedatabot.common.utils;
+import org.thedatabot.thedatabot.common.enums.ResultCode;
+import org.thedatabot.thedatabot.common.result.Result;
 
 public class ResponseUtil {
 
@@ -14,7 +15,7 @@ public class ResponseUtil {
     }
 
     // 构建失败响应
-    public static Result<String> buildFailure(int code, String message) {
+    public static Result<String> buildFailure(ResultCode code, String message) {
         return Result.failure(code, message);
     }
 }

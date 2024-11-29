@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.TheDataBot</groupId>
-    <artifactId>TheDataBot</artifactId>
+    <artifactId>TheDataBot_web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>TheDataBot</name>
     <description>TheDataBot</description>

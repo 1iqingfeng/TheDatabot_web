@@ -2,7 +2,7 @@ package org.thedatabot.thedatabot.registry;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.thedatabot.thedatabot.common.Enum.Bot.MessageType;
+import org.thedatabot.thedatabot.common.enums.Bot.MessageType;
 
 import java.util.EnumMap;
 import java.util.Map;

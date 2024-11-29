@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thedatabot.thedatabot.annotation.MessageTypeHandler;
-import org.thedatabot.thedatabot.common.Enum.Bot.MessageType;
+import org.thedatabot.thedatabot.common.enums.Bot.MessageType;
 import org.thedatabot.thedatabot.registry.MessageHandlerRegistry;
 
 import java.util.Set;

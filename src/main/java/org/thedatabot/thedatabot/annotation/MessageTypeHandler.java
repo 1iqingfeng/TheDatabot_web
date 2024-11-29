@@ -1,6 +1,6 @@
 package org.thedatabot.thedatabot.annotation;
 
-import org.thedatabot.thedatabot.common.Enum.Bot.MessageType;
+import org.thedatabot.thedatabot.common.enums.Bot.MessageType;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

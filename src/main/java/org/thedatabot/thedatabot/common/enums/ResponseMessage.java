@@ -1,4 +1,4 @@
-package org.thedatabot.thedatabot.response;
+package org.thedatabot.thedatabot.common.enums;
 
 /**
  * 存储 API 响应中的常见消息常量。

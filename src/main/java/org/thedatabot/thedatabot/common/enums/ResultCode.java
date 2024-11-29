@@ -1,4 +1,4 @@
-package org.thedatabot.thedatabot.common.Enum;
+package org.thedatabot.thedatabot.common.enums;
 
 import lombok.Getter;
 

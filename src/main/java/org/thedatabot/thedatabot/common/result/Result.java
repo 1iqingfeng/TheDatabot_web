@@ -1,9 +1,9 @@
-package org.thedatabot.thedatabot.common.Result;
+package org.thedatabot.thedatabot.common.result;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.thedatabot.thedatabot.common.Enum.ResultCode;
+import org.thedatabot.thedatabot.common.enums.ResultCode;
 
 import java.io.Serializable;
 
@@ -33,7 +33,7 @@ public class Result<T> implements Serializable {
     }
 
     // 自定义消息的失败响应
-    public static <T> Result<T> failure(int code, String message) {
-        return new Result<>(code, message, null);
+    public static <T> Result<T> failure(ResultCode resultCode, String message) {
+        return new Result<>(resultCode.getCode(), message, null);
     }
 }
